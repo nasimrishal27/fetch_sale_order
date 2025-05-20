@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="fetch_sale_order_wizard_action" model="ir.actions.act_window">
+        <field name="name">Fetch Sale Order</field>
+        <field name="res_model">fetch.sale.order.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem id="property_menu_root"
+              name="Fetch Sale Order"
+              parent="sale.sale_menu_root"
+              sequence="100"
+              action="fetch_sale_order_wizard_action"/>
+</odoo>
