@@ -14,7 +14,7 @@
                     <field name="db_password"/>
                 </group>
                 <footer>
-                    <button name="action_fetch_sale_order" string="Fetch Sale Order From V17" type="object" class="oe_highlight"/>
+                    <button name="action_fetch_sale_order" string="Fetch Sale Order" type="object" class="oe_highlight"/>
                     <button special="cancel" string="Cancel" class="btn-danger"/>
                 </footer>
             </form>

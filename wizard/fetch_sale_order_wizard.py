@@ -47,8 +47,7 @@ class FetchSaleOrderWizard(models.TransientModel):
                     self.env['sale.order.line'].create({
                         'order_id': sale_order.id, 'name': line['name'],
                         'product_id': line['product_id'][0] if line['product_id'] else False,
-                        'product_uom_qty': line['product_uom_qty'], 'price_unit': line['price_unit'],
-                        'product_uom': line.get('picking_ids', [False])[0]})
+                        'product_uom_qty': line['product_uom_qty'], 'price_unit': line['price_unit']})
 
             if picking_ids:
                 pickings = models_1.execute_kw(
@@ -76,7 +75,7 @@ class FetchSaleOrderWizard(models.TransientModel):
                         moves = models_1.execute_kw(
                             self.db, uid_db1, self.db_password,
                             'stock.move', 'read', [move_ids],
-                            {'fields': ['name', 'product_id', 'product_uom_qty', 'product_uom']}
+                            {'fields': ['name', 'product_id', 'product_uom_qty', 'product_uom', 'quantity']}
                         )
                         for move in moves:
                             self.env['stock.move'].create({
@@ -84,6 +83,7 @@ class FetchSaleOrderWizard(models.TransientModel):
                                 'product_id': move['product_id'][0] if move['product_id'] else False,
                                 'product_uom_qty': move['product_uom_qty'],
                                 'product_uom': move['product_uom'][0] if move['product_uom'] else False,
+                                'quantity': move['quantity'],
                                 'location_id': picking['location_id'][0] if picking['location_id'] else False,
                                 'location_dest_id': picking['location_dest_id'][0] if picking[
                                     'location_dest_id'] else False})
